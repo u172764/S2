@@ -2,9 +2,9 @@ import subprocess
 import ffmpeg
 import os
 
-name_video = 'BigBuckBunny_512kb.mp4'
+name_video = 'video_cortado.mp4'
 name_video_scaled = 'scaled.mp4'
-display_mode= 'stack'
+display_mode = 'stack'
 histogram_width = 100
 histogram_height = 200
 
@@ -14,8 +14,9 @@ def play_yuv_histogram(name, name_scaled, w, h, display_mode):
     h = str(h)
     command = 'ffmpeg -i {} -vf scale=600:600 {} '.format(name, name_scaled)
     os.system(command)
-    subprocess.call(['ffplay', '{}'.format(name_scaled), '-vf',
-                     'split=2[a][b],[a]histogram=display_mode={}, scale={}:{},format=yuva444p[hh],[b][hh]overlay'.format(display_mode,w,h)])
+    command2 = 'ffmpeg -i {} -vf "split=2[a][b],[a]histogram=display_mode={}, scale={}:{},format=yuva444p[hh],[b][hh]overlay" ' \
+               '-c:a copy output.mp4'.format(name_scaled, display_mode, w,h)
+    os.system(command2)
     print('DONE')
 
 
