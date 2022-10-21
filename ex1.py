@@ -3,11 +3,10 @@ import os
 
 print('How many seconds do you want the video would to last? \nInsert Here: ')
 N = int(input())
-name = 'BigBuckBunny_512kb.mp4'
-video = ffmpeg.input(name)
+name_video= 'BigBuckBunny_512kb.mp4'
 
 
-def video_cut(seconds, input_video):
+def video_cut(seconds, name):
     # Nos aseguramos que si el video tiene que durar más de 1 minuto.
     seconds = seconds % (24 * 3600)
     hour = seconds // 3600
@@ -23,4 +22,4 @@ def video_cut(seconds, input_video):
     print('DONE')
 
 
-video_cut(N, video)
+video_cut(N, name_video)
