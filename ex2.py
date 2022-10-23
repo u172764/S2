@@ -2,11 +2,6 @@ import subprocess
 import ffmpeg
 import os
 
-name_video = 'video_cortado.mp4'
-name_video_scaled = 'scaled.mp4'
-display_mode = 'stack'
-histogram_width = 100
-histogram_height = 200
 
 
 def play_yuv_histogram(name, name_scaled, w, h, display_mode):
@@ -20,4 +15,11 @@ def play_yuv_histogram(name, name_scaled, w, h, display_mode):
     print('DONE')
 
 
-play_yuv_histogram(name_video, name_video_scaled, histogram_width,histogram_height, display_mode)
+
+def ex2():
+    name_video = 'video_cortado.mp4'
+    name_video_scaled = 'scaled.mp4'
+    display_mode = 'stack'
+    histogram_width = 100
+    histogram_height = 200
+    play_yuv_histogram(name_video, name_video_scaled, histogram_width, histogram_height, display_mode)

@@ -1,11 +1,6 @@
 import ffmpeg
 import os
 
-print("720p = 1 \n480p = 2\n360x240 = 3\n160x120 = 4\nSELECCIONA LA OPCIÓN")
-option = int(input())
-vide_name = 'video_cortado.mp4'
-
-
 def convert_to(option, name):
     command = ''
     if option == 1:
@@ -19,5 +14,8 @@ def convert_to(option, name):
 
     os.system(command)
 
-
-convert_to(option, vide_name)
+def ex3():
+    print("720p = 1 \n480p = 2\n360x240 = 3\n160x120 = 4\nSELECCIONA LA OPCIÓN")
+    option = int(input())
+    vide_name = 'video_cortado.mp4'
+    convert_to(option, vide_name)

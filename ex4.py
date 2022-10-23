@@ -1,12 +1,19 @@
-from subprocess import Popen, PIPE, STDOUT
 import os
-import subprocess
-#saber que tipo de canal es
-command ='ffprobe -i video_cortado.mp4 -show_entries stream=channel_layout -select_streams a:0 -of compact=p=0:nk=1 -v 0'
-#saber cuantos canales hay
-command2='ffprobe -i video_cortado.mp4 -show_entries stream=channels -select_streams a:0 -of compact=p=0:nk=1 -v 0'
 
+def ex4():
+    input_name = 'video_cortado.mp4'
+    check_command = 'ffprobe -i {} -show_entries stream=channel_layout -select_streams a:0 -of compact=p=0:nk=1 -v 0 > channel_layouts.txt'.format(
+        input_name)
+    os.system(check_command)
+    archivo = open("channel_layouts.txt")
+    channel_layouts = archivo.readline()
+    if channel_layouts == 'stereo\n':
+        stereo2mono = 'ffmpeg -i {} -ac 1 mono.mp4'.format(input_name)
+        os.system(stereo2mono)
 
-res = Popen(command, stdout=PIPE, stderr=STDOUT)
-stdout, err = res.communicate()
-print(stdout)
+        # check if the conversion is done good
+        check_command = 'ffprobe -i mono.mp4 -show_entries stream=channel_layout -select_streams a:0 -of compact=p=0:nk=1 -v 0 > channel_layouts_response.txt'
+        os.system(check_command)
+    elif channel_layouts == 'mono\n':
+        mono2stereo = 'ffmpeg -i {} -ac 2 stereo.mp4'.format(input_name)
+        os.system(mono2stereo)
