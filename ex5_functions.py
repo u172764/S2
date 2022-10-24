@@ -1,6 +1,8 @@
 import os
 
 
+# in this file there are present all the functions in the other exercises.
+
 def ex1(seconds, name_video, output_name):
     seconds = seconds % (24 * 3600)
     hour = seconds // 3600
@@ -40,7 +42,6 @@ def ex3(video_name, option, output_name):
         command = 'ffmpeg -i {} -vf scale=160:120 {}'.format(video_name, output_name)
 
     os.system(command)
-
 
 
 def ex4(video_name):
